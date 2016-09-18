@@ -20,6 +20,7 @@ function attach_eip(){
            echo "EIP Successfully attached to $instance_id [$eip]"
        else
            echo "Something went wrong while attaching eip ID: $eip_id" >&2
+           return 1
        fi
    fi
 }
