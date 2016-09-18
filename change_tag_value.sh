@@ -36,7 +36,7 @@ get_instances_ids(){
    aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].[InstanceId]' \
             --filters Name=tag:$key,Values=$value --output text > $instance_ids
-        echo "Instance IDs captured in $instance_ids"
+   echo "Instance IDs captured in $instance_ids"
    echo "Done"
 }
 
@@ -50,9 +50,8 @@ get_volumes_ids(){
     do
          aws ec2 describe-instances \
             --no-verify-ssl --instance-id $i \
-                --region $region | \
-                        awk '/VolumeId/{ gsub(/,/,"");;gsub(/"/,""); print $2}' \
-                        >> $volume_ids
+            --region $region | \
+            awk '/VolumeId/{ gsub(/,/,"");;gsub(/"/,""); print $2}' >> $volume_ids
     done
     echo "Volumes IDs captured in $volume_ids"
 }
